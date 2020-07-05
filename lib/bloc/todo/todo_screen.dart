@@ -1,3 +1,5 @@
+import 'package:aashishtodolist/bloc/todoItem/todoitem_bloc.dart';
+import 'package:aashishtodolist/bloc/todoItem/todoitem_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,56 +14,72 @@ class TodoScreen extends StatelessWidget {
     return BlocBuilder<TodoBloc, TodoState>(
       builder: (context, state) {
         if (state is TodoInitial) {
-          return MaterialApp(
-            theme: ThemeData(primarySwatch: Colors.green),
-            home: Scaffold(
-              appBar: AppBar(
-                title: Text('State Mangement'),
-              ),
-              body: Container(
-                  child: Column(
-                children: <Widget>[
-                  new Text(
-                    'Aashish',
-                    style: TextStyle(
-                        fontStyle: FontStyle.italic,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20.0),
-                  ),
-                  Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: Image.asset('assets/aashish.jpg')),
-                  Container(
-                    margin: EdgeInsets.all(10.0),
-                    child: RaisedButton(
-                      color: Colors.deepOrange,
-                      onPressed: () {
-                        BlocProvider.of<TodoBloc>(context)
-                            .add(TodoPressedSuccesEvent());
-                      },
-                      child: Text('Go to Suceess State'),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
-                      textColor: Colors.white,
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.all(5.0),
-                    child: RaisedButton(
-                      color: Colors.blue,
-                      onPressed: () {
-                        showAlertDialog(context);
-                      },
-                      child: Text('Show Suceess Alert'),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: new BorderRadius.circular(30.0)),
-                      textColor: Colors.white,
-                    ),
-                  )
-                  // new Text('Show Success Alert')
-                ],
-              )),
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('State Mangement'),
             ),
+            body: Container(
+                child: Column(
+              children: <Widget>[
+                new Text(
+                  'Aashish',
+                  style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(5.0),
+                  child: Image.asset('assets/aashish.jpg'),
+                ),
+                Container(
+                  margin: EdgeInsets.all(10.0),
+                  child: RaisedButton(
+                    color: Colors.deepOrange,
+                    onPressed: () {
+                      BlocProvider.of<TodoBloc>(context)
+                          .add(TodoPressedSuccesEvent());
+                    },
+                    child: Text('Go to Suceess State'),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    textColor: Colors.white,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(5.0),
+                  child: RaisedButton(
+                    color: Colors.blue,
+                    onPressed: () {
+                      showAlertDialog(context);
+                    },
+                    child: Text('Show Suceess Alert'),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    textColor: Colors.white,
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.all(5.0),
+                  child: RaisedButton(
+                    color: Colors.green,
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                TodoItemScreen()),
+                      );
+                    },
+                    child: Text('SKIP'),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: new BorderRadius.circular(30.0)),
+                    textColor: Colors.white,
+                  ),
+                )
+                // new Text('Show Success Alert')
+              ],
+            )),
           );
         } else if (state is TodoSuccess) {
           return Scaffold(

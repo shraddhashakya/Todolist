@@ -8,7 +8,7 @@ part 'todo_state.dart';
 
 class TodoBloc extends Bloc<TodoEvent, TodoState> {
   @override
-  TodoState get initialState => TodoSuccess();
+  TodoState get initialState => TodoInitial();
 
   @override
   Stream<TodoState> mapEventToState(
@@ -17,17 +17,19 @@ class TodoBloc extends Bloc<TodoEvent, TodoState> {
     // Which event has arrived?
 
     //using ternary operator since there is only two cases
-    yield event is TodoPressedInitailEvent ? TodoInitial() : TodoSuccess();
+    //yield event is TodoPressedInitailEvent ? TodoInitial() : TodoSuccess();
 
     //using if else
 
-    // if (event is TodoPressedInitailEvent) {
-    //   print("state changed initial");
-    //   yield TodoInitial();
-    // } else if (event is TodoPressedSuccesEvent) {
-    //   print("state changed to sucess");
-    //   yield TodoSuccess();
-    // }
+    if (event is TodoPressedInitailEvent) {
+      print("state changed initial");
+      yield TodoInitial();
+    } else if (event is TodoPressedSuccesEvent) {
+      print("state changed to sucess");
+      yield TodoSuccess();
+    } else if (event is TodoGoToTodoItemEvent) {
+      yield GoToTodoItemPageState();
+    }
 
     // If Event is TodoPressedEvent
     // - yeild TodoInitialState

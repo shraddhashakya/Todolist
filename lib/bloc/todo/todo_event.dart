@@ -8,7 +8,7 @@ abstract class TodoEvent extends Equatable {
 
 class TodoPressedInitailEvent extends TodoEvent {
   const TodoPressedInitailEvent();
-  
+
   @override
   // TODO: implement props
   List<Object> get props => [];
@@ -16,6 +16,14 @@ class TodoPressedInitailEvent extends TodoEvent {
 
 class TodoPressedSuccesEvent extends TodoEvent {
   const TodoPressedSuccesEvent();
+
+  @override
+  // TODO: implement props
+  List<Object> get props => [];
+}
+
+class TodoGoToTodoItemEvent extends TodoEvent {
+  const TodoGoToTodoItemEvent();
 
   @override
   // TODO: implement props
