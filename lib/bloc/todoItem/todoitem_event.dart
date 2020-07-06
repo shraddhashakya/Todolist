@@ -6,32 +6,23 @@ abstract class TodoitemEvent extends Equatable {
 
 class TodoitemInitailEvent extends TodoitemEvent {
   const TodoitemInitailEvent();
-
   @override
-  // TODO: implement props
   List<Object> get props => [];
 }
 
 class TodoAddItemEvent extends TodoitemEvent {
-  const TodoAddItemEvent();
+  final String todo;
+
+  TodoAddItemEvent(this.todo);
 
   @override
   // TODO: implement props
-  List<Object> get props => [];
+  List<Object> get props => throw UnimplementedError();
 }
 
 class TodoDeleteItemEvent extends TodoitemEvent {
-  const TodoDeleteItemEvent();
-
+  final String item;
+  const TodoDeleteItemEvent(this.item);
   @override
-  // TODO: implement props
-  List<Object> get props => [];
-}
-
-class TodoUpdateItemEvent extends TodoitemEvent {
-  const TodoUpdateItemEvent();
-
-  @override
-  // TODO: implement props
-  List<Object> get props => [];
+  List<Object> get props => [item];
 }

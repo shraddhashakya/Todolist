@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:aashishtodolist/bloc/todo/todo_bloc.dart';
+import 'package:aashishtodolist/source/todoItem.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -14,15 +16,25 @@ class TodoitemBloc extends Bloc<TodoitemEvent, TodoitemState> {
   Stream<TodoitemState> mapEventToState(
     TodoitemEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    var currState = state;
+    print(currState);
     if (event is TodoitemInitailEvent) {
-      yield TodoItemInitial();
+      if (currState is TodoItemInitial) {
+        yield TodoItemInitial();
+      }
     } else if (event is TodoAddItemEvent) {
-      yield TodoAddItem();
+      if (currState is TodoItemInitial) {
+        final List<String> updatedTodo = List.from(currState.todoList)
+          ..add(event.todo);
+
+        yield TodoItemInitial(updatedTodo);
+      }
     } else if (event is TodoDeleteItemEvent) {
-      yield TodoDeleteItem();
-    } else if (event is TodoUpdateItemEvent) {
-      yield TodoUpdateItem();
+      if (currState is TodoItemInitial) {
+        final List<String> updatedTodo = List.from(currState.todoList)
+          ..remove(event.item);
+        yield TodoItemInitial(updatedTodo);
+      }
     }
   }
 }

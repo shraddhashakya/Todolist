@@ -5,21 +5,15 @@ abstract class TodoitemState extends Equatable {
 }
 
 class TodoItemInitial extends TodoitemState {
+  final List<String> todoList;
+  TodoItemInitial([this.todoList = const []]);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [todoList];
 }
 
-class TodoAddItem extends TodoitemState {
+class TodoNotLoaded extends TodoitemState {
   @override
-  List<Object> get props => [];
-}
-
-class TodoDeleteItem extends TodoitemState {
-  @override
-  List<Object> get props => [];
-}
-
-class TodoUpdateItem extends TodoitemState {
-  @override
+  //String toString => 'TodoNotLoaded';
   List<Object> get props => [];
 }
